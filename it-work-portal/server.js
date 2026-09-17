@@ -6,13 +6,14 @@ const mysql = require('mysql2/promise');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const isProduction = process.env.NODE_ENV === 'production';
 
 const DB_CONFIG = {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'it_work_portal'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'it_work_portal'
 };
 
 const pool = mysql.createPool(DB_CONFIG);
@@ -22,11 +23,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: 'it-work-portal-secret',
+    secret: process.env.SESSION_SECRET || 'it-work-portal-development-secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
+      secure: isProduction,
+      sameSite: 'lax',
       maxAge: 1000 * 60 * 60 * 2
     }
   })
@@ -163,6 +166,15 @@ app.get('/api/session', (req, res) => {
   res.json({ success: true, user: req.session.user });
 });
 
+app.get('/api/health', async (req, res) => {
+  try {
+    await pool.execute('SELECT 1');
+    res.json({ success: true, database: 'connected' });
+  } catch (error) {
+    res.status(503).json({ success: false, database: 'unavailable' });
+  }
+});
+
 app.get('/api/profile', isLoggedIn, async (req, res) => {
   try {
     const [rows] = await pool.execute(
@@ -266,6 +278,10 @@ app.post('/api/experienced', isLoggedIn, async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

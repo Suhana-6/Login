@@ -52,7 +52,7 @@ registerForm.addEventListener('submit', async (event) => {
       })
     });
 
-    const result = await response.json();
+    const result = await response.json().catch(() => ({}));
 
     if (!response.ok) {
       setMessage(result.message || 'Unable to connect to server.', true);
@@ -64,6 +64,6 @@ registerForm.addEventListener('submit', async (event) => {
       window.location.href = '/login.html';
     }, 1000);
   } catch (error) {
-    setMessage('Unable to connect to server.', true);
+    setMessage(error.message || 'Unable to connect to server. Check the deployment configuration.', true);
   }
 });
