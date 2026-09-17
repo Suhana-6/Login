@@ -10,11 +10,11 @@ form.addEventListener('submit', async (event) => {
     const button = document.getElementById('register-button'); button.disabled = true; feedback('Creating your account...');
     try {
         const response = await fetch('/api/register', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ full_name:values.fullName, username:values.username, email:values.email, password:values.password, confirm_password:values.confirmPassword }) });
-        const result = await response.json();
+        const result = await response.json().catch(() => ({}));
         if (!response.ok) {
             feedback(result.message || 'Registration failed.', true);
             return;
         }
         feedback('Account created successfully. Redirecting to login...'); setTimeout(() => { window.location.href = '/login.html'; }, 900);
-    } catch (error) { feedback('Unable to connect to the server. Please make sure Node.js is running.', true); } finally { button.disabled = false; }
+    } catch (error) { feedback(error.message || 'Unable to connect to the server. Please check the deployment configuration.', true); } finally { button.disabled = false; }
 });
