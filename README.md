@@ -59,6 +59,10 @@ CLIENT_ORIGIN=https://your-domain.example
 
 Start the app with `npm start`. Use `/api/health` as the deployment health check; it returns HTTP 200 only when the server can reach MySQL. Use HTTPS in production. The default Express session store is suitable for local development only; use a persistent session store when running multiple instances or when sessions must survive restarts.
 
+### Vercel
+
+This repository includes `api/index.js` and `vercel.json` so Vercel can run the Express API as a serverless function. In the Vercel project settings, add `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, and `SESSION_SECRET` as environment variables for the Production environment. Deploy from the repository root, then test `https://your-domain.example/api/health`. The response must show `database: "connected"` before registration and login can work.
+
 ## Application flow
 
 Register a new account, then login with the same email or username. The password is stored as a bcrypt hash. A session is created after login, so the dashboard, profile and work forms are protected. Submitting either work form stores a profile record and an application record for the logged-in user. Logout destroys only the session, so the account and application records remain in MySQL.

@@ -197,7 +197,9 @@ async function startServer() {
     });
 }
 
-startServer();
+if (require.main === module) {
+    startServer();
+}
 
 function shutdown(signal) {
     console.log(`${signal} received. Closing database pool.`);
@@ -206,3 +208,5 @@ function shutdown(signal) {
 
 process.once('SIGTERM', () => shutdown('SIGTERM'));
 process.once('SIGINT', () => shutdown('SIGINT'));
+
+module.exports = app;
