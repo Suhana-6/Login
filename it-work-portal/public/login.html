@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | IT Work Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="auth-body">
+    <main class="auth-layout">
+      <section class="auth-intro">
+        <a href="/" class="brand">IT Work Portal</a>
+        <p class="eyebrow">BUILD YOUR IT CAREER</p>
+        <h1>Connect with opportunities and build your professional future.</h1>
+      </section>
+
+      <section class="auth-card">
+        <p class="card-kicker">WELCOME BACK</p>
+        <h2>Login to Your Account</h2>
+
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="identifier">Username or Email</label>
+            <input id="identifier" name="identifier" type="text" placeholder="Enter username or email" />
+            <small class="error-text" id="identifier-error"></small>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-box">
+              <input id="password" name="password" type="password" placeholder="Enter your password" />
+              <button type="button" id="toggle-password" class="toggle-btn">Show</button>
+            </div>
+            <small class="error-text" id="password-error"></small>
+          </div>
+
+          <div class="form-actions">
+            <a href="#" class="text-link">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="primary-btn">Login</button>
+          <p id="form-message" class="form-message" aria-live="polite"></p>
+        </form>
+
+        <p class="bottom-line">
+          Don’t have an account?
+          <a href="register.html">Register Now</a>
+        </p>
+      </section>
+    </main>
+
+    <script src="js/login.js"></script>
+  </body>
+</html>

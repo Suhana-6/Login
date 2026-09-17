@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | IT Work Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="dashboard-body">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <span class="brand-mark">IT</span>
+        <span>IT Work Portal</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="dashboard.html">Home</a>
+        <a href="profile.html">My Profile</a>
+        <a href="fresher.html">Fresher</a>
+        <a href="experienced.html">Experienced</a>
+        <button id="logout-button" class="nav-btn" type="button">Logout</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="welcome-box">
+        <div>
+          <p class="intro-label">Welcome</p>
+          <h1 id="user-name">Welcome, User</h1>
+        </div>
+      </section>
+
+      <section class="page-heading">
+        <h2>Find Your Next IT Opportunity</h2>
+      </section>
+
+      <section class="choice-grid">
+        <article class="choice-card">
+          <div class="card-header">
+            <span class="badge">Fresher</span>
+          </div>
+          <h3>Fresher</h3>
+          <p>For students and candidates starting their IT career.</p>
+          <a href="fresher.html" class="primary-btn small-btn">Apply as Fresher</a>
+        </article>
+
+        <article class="choice-card">
+          <div class="card-header">
+            <span class="badge alt">Experienced</span>
+          </div>
+          <h3>Experienced</h3>
+          <p>For professionals looking for new IT opportunities.</p>
+          <a href="experienced.html" class="primary-btn small-btn">Apply as Experienced</a>
+        </article>
+      </section>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

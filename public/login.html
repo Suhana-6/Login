@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | IT Work Portal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+    <main class="auth-layout">
+        <section class="auth-intro">
+            <a class="brand brand-light" href="/">
+                <span class="brand-mark">IT</span> Work Portal
+            </a>
+            <p class="eyebrow">Welcome back</p>
+            <h1>Access Your Career Dashboard</h1>
+            <p>Sign in to manage applications, explore IT opportunities, and track your professional progress.</p>
+        </section>
+
+        <section class="auth-card">
+            <p class="eyebrow">Sign in</p>
+            <h2>Login to Your Account</h2>
+            <p class="muted">Use your username or email to continue.</p>
+
+            <form id="login-form" novalidate>
+                <label for="email">Username or email</label>
+                <input id="email" name="identifier" type="text" placeholder="Enter username or email">
+                <p class="field-error" id="email-error"></p>
+
+                <label for="password">Password</label>
+                <div class="password-field">
+                    <input id="password" name="password" type="password" placeholder="Enter your password">
+                    <button type="button" class="text-button" id="toggle-password" aria-label="Show password">Show</button>
+                </div>
+                <p class="field-error" id="password-error"></p>
+
+                <button class="button button-full" id="login-button" type="submit">Login</button>
+                <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+            </form>
+
+            <p class="auth-footer">Don't have an account? <a href="register.html">Register</a></p>
+        </section>
+    </main>
+
+    <script src="/js/login.js"></script>
+</body>
+</html>

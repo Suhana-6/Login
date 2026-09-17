@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | IT Work Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="auth-body">
+    <main class="auth-layout">
+      <section class="auth-intro">
+        <a href="/" class="brand">IT Work Portal</a>
+        <p class="eyebrow">START YOUR IT JOURNEY</p>
+        <h1>Create your professional profile and explore opportunities in the IT field.</h1>
+      </section>
+
+      <section class="auth-card">
+        <p class="card-kicker">NEW ACCOUNT</p>
+        <h2>Create Your Account</h2>
+
+        <form id="register-form" novalidate>
+          <div class="field">
+            <label for="full_name">Full Name</label>
+            <input id="full_name" name="full_name" type="text" placeholder="Enter your full name" />
+            <small class="error-text" id="full_name-error"></small>
+          </div>
+
+          <div class="field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="Choose a username" />
+            <small class="error-text" id="username-error"></small>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="Enter your email" />
+            <small class="error-text" id="email-error"></small>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Enter a password" />
+            <small class="error-text" id="password-error"></small>
+          </div>
+
+          <div class="field">
+            <label for="confirm_password">Confirm Password</label>
+            <input id="confirm_password" name="confirm_password" type="password" placeholder="Confirm your password" />
+            <small class="error-text" id="confirm_password-error"></small>
+          </div>
+
+          <button type="submit" class="primary-btn gold-btn">Create Account</button>
+          <p id="form-message" class="form-message" aria-live="polite"></p>
+        </form>
+
+        <p class="bottom-line">
+          Already have an account?
+          <a href="login.html">Login</a>
+        </p>
+      </section>
+    </main>
+
+    <script src="js/register.js"></script>
+  </body>
+</html>

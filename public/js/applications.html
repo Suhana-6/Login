@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications | IT Work Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="app-page">
+    <header class="app-header"><a class="brand brand-light" href="dashboard.html"><span class="brand-mark">IT</span> Work Portal</a><nav class="app-nav"><a href="dashboard.html">Home</a><a href="profile.html">My Profile</a><a class="active" href="applications.html">Applications</a><button class="button button-small button-dark" id="logout-button" type="button">Logout</button></nav></header>
+    <main class="container dashboard-main"><section class="applications-section"><p class="eyebrow">Your activity</p><h1>My Applications</h1><p class="muted">Only applications submitted from your account are shown here.</p><div id="applications-list" class="application-list"><p class="muted">Loading applications...</p></div></section></main>
+    <script src="js/applications.js"></script>
+    <script>document.getElementById('logout-button').addEventListener('click', async () => { await fetch('/api/logout', { method:'POST', credentials:'include' }); window.location.href = '/login.html'; });</script>
+</body>
+</html>

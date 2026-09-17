@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experienced Application | IT Work Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="dashboard-body">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <span class="brand-mark">IT</span>
+        <span>IT Work Portal</span>
+      </div>
+      <nav class="nav-menu">
+        <a href="dashboard.html">Home</a>
+        <a href="profile.html">My Profile</a>
+        <a href="fresher.html">Fresher</a>
+        <a href="experienced.html" class="active">Experienced</a>
+        <button id="logout-button" class="nav-btn" type="button">Logout</button>
+      </nav>
+    </header>
+
+    <main class="container form-wrap">
+      <h2>Experienced Application Form</h2>
+      <form id="experienced-form" novalidate>
+        <div class="form-grid">
+          <h3 class="form-section-title">Personal Information</h3>
+          <div class="field">
+            <label for="experienced-full-name">Full Name <span class="required-mark">*</span></label>
+            <input id="experienced-full-name" type="text" name="full_name" required />
+          </div>
+
+          <div class="field">
+            <label for="experienced-email">Email <span class="required-mark">*</span></label>
+            <input id="experienced-email" type="email" name="email" required />
+          </div>
+
+          <div class="field">
+            <label for="experienced-phone">Phone <span class="required-mark">*</span></label>
+            <input id="experienced-phone" type="tel" name="phone" required />
+          </div>
+
+          <div class="field">
+            <label for="experienced-qualification">Qualification <span class="required-mark">*</span></label>
+            <input id="experienced-qualification" type="text" name="qualification" required />
+          </div>
+
+          <div class="field">
+            <label for="years-of-experience">Years of Experience <span class="required-mark">*</span></label>
+            <input id="years-of-experience" type="number" name="years_of_experience" min="0" max="60" step="0.1" required />
+          </div>
+
+          <div class="field">
+            <label for="current-company">Current Company <span class="required-mark">*</span></label>
+            <input id="current-company" type="text" name="current_company" required />
+          </div>
+
+          <div class="field">
+            <label for="previous-company">Previous Company</label>
+            <input id="previous-company" type="text" name="previous_company" />
+          </div>
+
+          <div class="field">
+            <label for="current-designation">Current Designation</label>
+            <input id="current-designation" type="text" name="current_designation" />
+          </div>
+
+          <h3 class="form-section-title">Career Information</h3>
+          <div class="field">
+            <label for="experienced-job-role">Job Role <span class="required-mark">*</span></label>
+            <select id="experienced-job-role" name="job_role" data-options="jobRoles" required><option value="">Select a job role</option></select>
+          </div>
+
+          <h3 class="form-section-title">Technical Skills</h3>
+          <div class="field full-width">
+            <label for="experienced-technical-skills">Programming &amp; Technical Skills <span class="required-mark">*</span></label>
+            <select id="experienced-technical-skills" name="skills" data-options="skills" multiple required aria-describedby="experienced-skills-help"><option value="">Loading skills...</option></select>
+            <small id="experienced-skills-help" class="field-help">Hold Ctrl (Windows) or Command (Mac) to select multiple skills.</small>
+          </div>
+
+          <h3 class="form-section-title">Job Preferences</h3>
+          <div class="field">
+            <label for="experienced-preferred-work">Preferred IT Work <span class="required-mark">*</span></label>
+            <select id="experienced-preferred-work" name="preferred_work" data-options="preferredWork" required><option value="">Select preferred work</option></select>
+          </div>
+
+          <h3 class="form-section-title">Location &amp; Salary</h3>
+          <div class="field">
+            <label for="expected-salary">Expected Salary (Per Annum) <span class="required-mark">*</span></label>
+            <select id="expected-salary" name="expected_salary" data-options="salaryRanges" required><option value="">Select expected salary</option></select>
+          </div>
+
+          <div class="field">
+            <label for="experienced-preferred-location">Preferred Location <span class="required-mark">*</span></label>
+            <select id="experienced-preferred-location" name="preferred_location" data-options="locations" required><option value="">Select a location</option></select>
+          </div>
+
+          <h3 class="form-section-title">Profile Summary</h3>
+          <div class="field full-width">
+            <label for="experienced-resume">Resume Summary</label>
+            <textarea id="experienced-resume" name="resume" rows="4" placeholder="Describe your relevant experience and work summary"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="primary-btn">Submit Application</button>
+        <p id="form-message" class="form-message" aria-live="polite"></p>
+      </form>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/application.js"></script>
+  </body>
+</html>

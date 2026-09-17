@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard | IT Work Portal</title><link rel="stylesheet" href="css/style.css">
+</head>
+<body class="app-page">
+    <header class="app-header"><a class="brand brand-light" href="dashboard.html"><span class="brand-mark">IT</span> Work Portal</a><button class="nav-toggle" id="nav-toggle" type="button">Menu</button><nav class="app-nav" id="app-nav"><a class="active" href="dashboard.html">Home</a><a href="profile.html">My Profile</a><a href="#applications">Applications</a><button class="button button-small button-dark" id="logout-button" type="button">Logout</button></nav></header>
+    <main class="dashboard-main container"><section class="welcome-bar"><div><p class="eyebrow">Member dashboard</p><h1>Welcome, <span id="user-name">there</span></h1><p class="muted">Choose the path that best describes your next move.</p></div><div class="welcome-badge">IT<br>CAREER</div></section>
+        <section class="opportunity-section"><div class="section-heading"><div><p class="eyebrow">Your opportunities</p><h2>Find Your IT Work Opportunity</h2></div></div><div class="opportunity-grid"><article class="opportunity-card fresher-card"><span class="card-index">01</span><h3>Fresher</h3><p>For users without previous work experience. Share your education, skills and career interests.</p><a class="button" href="fresher.html">Apply as Fresher</a></article><article class="opportunity-card experienced-card"><span class="card-index">02</span><h3>Experienced</h3><p>For professionals with IT experience who are ready for their next opportunity.</p><a class="button" href="experienced.html">Apply as Experienced</a></article></div></section>
+        <section class="applications-section" id="applications"><div class="section-heading"><div><p class="eyebrow">Your activity</p><h2>My Applications</h2></div><span class="count-pill" id="application-count">0 records</span></div><div id="applications-list" class="application-list"><p class="muted">Loading your applications...</p></div></section>
+    </main><script src="js/dashboard.js"></script>
+</body>
+</html>

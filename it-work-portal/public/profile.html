@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | IT Work Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="dashboard-body">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <span class="brand-mark">IT</span>
+        <span>IT Work Portal</span>
+      </div>
+      <nav class="nav-menu">
+        <a href="dashboard.html">Home</a>
+        <a href="profile.html" class="active">My Profile</a>
+        <a href="fresher.html">Fresher</a>
+        <a href="experienced.html">Experienced</a>
+        <button id="logout-button" class="nav-btn" type="button">Logout</button>
+      </nav>
+    </header>
+
+    <main class="container profile-wrap">
+      <h2>My Profile</h2>
+      <div class="profile-card">
+        <p><strong>Full Name:</strong> <span id="profile-full-name">-</span></p>
+        <p><strong>Username:</strong> <span id="profile-username">-</span></p>
+        <p><strong>Email:</strong> <span id="profile-email">-</span></p>
+      </div>
+    </main>
+
+    <script src="js/profile.js"></script>
+  </body>
+</html>
