@@ -2,21 +2,14 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const mysql = require('mysql2/promise');
+const { sql } = require('@vercel/postgres');
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const isProduction = process.env.NODE_ENV === 'production';
 
-const DB_CONFIG = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'it_work_portal'
-};
-
-const pool = mysql.createPool(DB_CONFIG);
+const query = (text, values = []) => sql.query(text, values);
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
@@ -89,20 +82,20 @@ app.post('/api/register', async (req, res) => {
   }
 
   try {
-    const [existingUsername] = await pool.execute('SELECT id FROM users WHERE username = ?', [username]);
+    const { rows: existingUsername } = await query('SELECT id FROM users WHERE username = $1', [username]);
     if (existingUsername.length > 0) {
       return res.status(409).json({ success: false, message: 'Username already exists.' });
     }
 
-    const [existingEmail] = await pool.execute('SELECT id FROM users WHERE email = ?', [email]);
+    const { rows: existingEmail } = await query('SELECT id FROM users WHERE email = $1', [email]);
     if (existingEmail.length > 0) {
       return res.status(409).json({ success: false, message: 'Email already registered.' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await pool.execute(
-      'INSERT INTO users (full_name, username, email, password) VALUES (?, ?, ?, ?)',
+    await query(
+      'INSERT INTO users (full_name, username, email, password) VALUES ($1, $2, $3, $4)',
       [fullName, username, email, hashedPassword]
     );
 
@@ -122,8 +115,8 @@ app.post('/api/login', async (req, res) => {
   }
 
   try {
-    const [rows] = await pool.execute(
-      'SELECT * FROM users WHERE username = ? OR email = ? LIMIT 1',
+    const { rows } = await query(
+      'SELECT * FROM users WHERE username = $1 OR email = $2 LIMIT 1',
       [identifier, identifier]
     );
 
@@ -168,7 +161,7 @@ app.get('/api/session', (req, res) => {
 
 app.get('/api/health', async (req, res) => {
   try {
-    await pool.execute('SELECT 1');
+    await query('SELECT 1');
     res.json({ success: true, database: 'connected' });
   } catch (error) {
     res.status(503).json({ success: false, database: 'unavailable' });
@@ -177,8 +170,8 @@ app.get('/api/health', async (req, res) => {
 
 app.get('/api/profile', isLoggedIn, async (req, res) => {
   try {
-    const [rows] = await pool.execute(
-      'SELECT id, full_name, username, email FROM users WHERE id = ?',
+    const { rows } = await query(
+      'SELECT id, full_name, username, email FROM users WHERE id = $1',
       [req.session.user.id]
     );
 
@@ -239,8 +232,8 @@ app.post('/api/fresher', isLoggedIn, async (req, res) => {
   }
 
   try {
-    await pool.execute(
-      'INSERT INTO applications (user_id, category, full_name, email, phone, qualification, college, graduation_year, job_role, skills, preferred_location, preferred_work, work_type, expected_salary, resume) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    await query(
+      'INSERT INTO applications (user_id, category, full_name, email, phone, qualification, college, graduation_year, job_role, skills, preferred_location, preferred_work, work_type, expected_salary, resume) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)',
       [req.session.user.id, 'Fresher', cleanApplicationValue(full_name), cleanApplicationValue(email).toLowerCase(), cleanApplicationValue(phone), cleanApplicationValue(qualification), cleanApplicationValue(college), cleanApplicationValue(graduation_year), cleanApplicationValue(job_role), cleanApplicationValue(skills), cleanApplicationValue(preferred_location), cleanApplicationValue(preferred_work), cleanApplicationValue(preferred_work), cleanApplicationValue(expected_salary || req.body.expectedSalary), cleanApplicationValue(resume)]
     );
 
@@ -266,8 +259,8 @@ app.post('/api/experienced', isLoggedIn, async (req, res) => {
   }
 
   try {
-    await pool.execute(
-      'INSERT INTO applications (user_id, category, full_name, email, phone, qualification, years_of_experience, current_company, previous_company, current_designation, job_role, skills, expected_salary, preferred_location, preferred_work, work_type, resume) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    await query(
+      'INSERT INTO applications (user_id, category, full_name, email, phone, qualification, years_of_experience, current_company, previous_company, current_designation, job_role, skills, expected_salary, preferred_location, preferred_work, work_type, resume) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)',
       [req.session.user.id, 'Experienced', cleanApplicationValue(full_name), cleanApplicationValue(email).toLowerCase(), cleanApplicationValue(phone), cleanApplicationValue(qualification), cleanApplicationValue(years_of_experience), cleanApplicationValue(current_company), cleanApplicationValue(previous_company), cleanApplicationValue(current_designation), cleanApplicationValue(job_role), cleanApplicationValue(skills), cleanApplicationValue(expected_salary), cleanApplicationValue(preferred_location), cleanApplicationValue(preferred_work), cleanApplicationValue(preferred_work), cleanApplicationValue(resume)]
     );
 
