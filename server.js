@@ -190,10 +190,10 @@ async function startServer() {
         console.error('Database connection error:', error.message);
     }
 
-    app.listen(PORT, '0.0.0.0', () => {
+        app.listen(PORT, '0.0.0.0', () => {
         console.log('=================================');
-        console.log('IT WORK PORTAL');
-        console.log(`Server running on http://localhost:${PORT}`);
+            console.log('IT WORK PORTAL');
+            console.log(`Server running on http://localhost:${PORT}`);
         console.log('=================================');
     });
 }
