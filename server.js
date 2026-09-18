@@ -16,6 +16,7 @@ const db = mysql.createPool({
     database: process.env.DB_NAME || 'it_work_portal',
     waitForConnections: true,
     connectionLimit: 10
+
 });
 
 app.set('trust proxy', 1);
@@ -196,6 +197,7 @@ async function startServer() {
         console.log('=================================');
     });
 }
+
 
 if (require.main === module) {
     startServer();
